@@ -115,7 +115,7 @@ else {
         if (!ff.stdin.write(b)) await new Promise((r) => ff.stdin.once('drain', r));
         if (i % 150 === 0) process.stdout.write(`\r${i}/${n} frames`);
       }
-      ff.stdin.end(); await new Promise((r) => ff.on('close', r));
+      ff.stdin.end(); await new Promise((r) => ff.on('close', (c) => { if (c) { console.error('ffmpeg failed with exit ' + c); process.exit(c); } r(); }));
       console.log(`\r${out} (${n} frames, ${hasMix ? 'with data/mix.wav' : 'SILENT: no data/mix.wav'}, ${((Date.now() - t0) / 1000).toFixed(0)} s)`);
     } else console.log('modes: check · cues · sheet · frames · video · preview');
   } finally { P.close(); srv.close(); }

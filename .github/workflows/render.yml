@@ -66,7 +66,8 @@ jobs:
           fps=${{ inputs.fps }}
           dur=$(jq -r .duration data/lines.json)
           read s e <<< "$(python3 -c "import sys; dur,fps,i,n=float(sys.argv[1]),int(sys.argv[2]),int(sys.argv[3]),int(sys.argv[4]); tf=round(dur*fps); a,b=i*tf//n,(i+1)*tf//n; print(a/fps,b/fps)" "$dur" "$fps" "${{ matrix.shard }}" "${{ inputs.shards }}")"
-          echo "start=$s end=$e" >> "$GITHUB_OUTPUT"
+          echo "start=$s" >> "$GITHUB_OUTPUT"
+          echo "end=$e" >> "$GITHUB_OUTPUT"
 
       - name: Render shard ${{ matrix.shard }}
         working-directory: ${{ inputs.project }}
