@@ -89,7 +89,7 @@ function bedroom(E) {
     /** day 0..1: swap moonlight for morning sun, night sky for bright sky, screen off */
     update(day) {
       moon.key.intensity = lerp(2.4, 0.25, day); moon.rim.intensity = lerp(0.9, 0.2, day);
-      sun.intensity = 3.6 * day; dayFill.intensity = 0.9 * day;
+      sun.intensity = 5.2 * day; dayFill.intensity = 1.4 * day;
       skyN.opacity = 1 - day; skyMat.color.set('#0B1830').lerp(new THREE.Color('#CFE8FA'), day);
       scene.background = new THREE.Color('#0A0E1C').lerp(new THREE.Color('#E8DCCB'), day);
       scene.fog.color.copy(scene.background);
@@ -115,7 +115,7 @@ function xray(E) {
 function neuro(E) {
   const scene = new THREE.Scene(); scene.background = new THREE.Color('#2A0510'); scene.fog = new THREE.FogExp2('#3A0812', 0.14);
   scene.add(new THREE.HemisphereLight('#FF8A9A', '#30030A', 0.7));
-  const l1 = new THREE.PointLight('#FFB0A0', 30, 10, 1.6); scene.add(l1);
+  const l1 = new THREE.PointLight('#FFB0A0', 13, 10, 1.6); scene.add(l1);
   // neurons: nodes + links
   const nodes = [[0, 0, 0, 0.30], [0.9, 0.5, -0.6, 0.14], [-0.8, 0.3, -0.9, 0.12], [0.5, -0.6, -1.1, 0.13], [-0.5, -0.5, -0.4, 0.11], [1.2, -0.2, -1.6, 0.15], [-1.1, -0.15, -1.5, 0.12], [0.15, 0.8, -1.5, 0.12], [1.0, 0.9, -2.3, 0.14], [-0.4, 1.0, -2.4, 0.11], [0.6, 0.2, -2.8, 0.13], [-1.0, 0.6, -2.9, 0.12]];
   const nodeM = [], NM = new THREE.MeshPhysicalMaterial({ color: '#FF6E8A', roughness: 0.35, clearcoat: 0.7, emissive: '#FF4E6E', emissiveIntensity: 0.35 });
@@ -137,11 +137,11 @@ function neuro(E) {
   return {
     scene, light: l1,
     update(t, { fire = 0, signal = 0, winDim = 0 } = {}) {
-      nodeM.forEach((m, i) => { m.material.emissiveIntensity = 0.3 + 0.22 * Math.sin(t * 2.6 + i * 1.7); });
+      nodeM.forEach((m, i) => { m.material.emissiveIntensity = 0.16 + 0.13 * Math.sin(t * 2.6 + i * 1.7); });
       win.material.emissiveIntensity = lerp(0.5, 0.03, winDim); win.material.color.lerpColors(new THREE.Color('#7CF29A'), new THREE.Color('#5A3A4A'), winDim);
-      mem.material.emissiveIntensity = 0.35 + fire * 1.4 * (0.6 + 0.4 * Math.sin(t * 9));
+      mem.material.emissiveIntensity = 0.25 + fire * 0.95 * (0.6 + 0.4 * Math.sin(t * 9));
       mem.material.color.set('#FF4E6E').lerp(new THREE.Color('#FF2020'), fire);
-      pain.material.emissiveIntensity = 0.25 + signal * 1.6;
+      pain.material.emissiveIntensity = 0.18 + signal * 1.15;
       sig.visible = signal > 0.001;
       memP.set(...nodes[0].slice(0, 3)); painP.set(...nodes[3].slice(0, 3));
       sig.position.lerpVectors(memP, painP, signal);
@@ -156,7 +156,7 @@ export function buildShots(E) {
   const cam = camera(30);
   const BLOOK = { aperture: 0.004, maxblur: 0.012, bloom: 0.25, vignette: 0.5 };
   const XLOOK = { aperture: 0.0015, bloom: 0.55, bloomThreshold: 0.4, vignette: 0.45 };
-  const NLOOK = { aperture: 0.005, maxblur: 0.014, bloom: 0.6, bloomThreshold: 0.5, focus: 2.6 };
+  const NLOOK = { aperture: 0.005, maxblur: 0.014, bloom: 0.32, bloomThreshold: 0.68, focus: 2.6 };
 
   const BED = bedroom(E), hero = new Human({});
   const X = xray(E);
@@ -226,16 +226,16 @@ export function buildShots(E) {
   { const st = cut(4);
     const panels = new THREE.Group(); panels.visible = false;
     for (let i = 0; i < 5; i++) {
-      const pm = new THREE.Mesh(new THREE.PlaneGeometry(0.16, 0.1), new THREE.MeshBasicMaterial({ color: '#BFE8FF', transparent: true, opacity: 0.85, side: THREE.DoubleSide }));
+      const pm = new THREE.Mesh(new THREE.PlaneGeometry(0.11, 0.07), new THREE.MeshBasicMaterial({ color: '#BFE8FF', transparent: true, opacity: 0.35, side: THREE.DoubleSide }));
       pm.position.set(Math.cos(i * 1.26) * 0.23, 0.02 * Math.sin(i * 3), Math.sin(i * 1.26) * 0.23); pm.lookAt(0, 0, 0); panels.add(pm);
     }
     X.scene.add(panels);
     add({ id: 'S05', at: st, note: 'brain close-up, memory panels orbit like film frames', draw(lt, d, t, blit) {
       panels.rotation.y = lt * 0.9; panels.position.set(0, 1.70, 0); panels.visible = true;
-      X.br.mat.emissiveIntensity = 0.9 + 0.15 * Math.sin(lt * 4);
+      X.br.mat.emissiveIntensity = 0.42 + 0.08 * Math.sin(lt * 4);
       const a = eio(lt / d);
-      cam.position.set(Math.sin(0.6 + a * 0.8) * 0.55, 1.70 + 0.08 * Math.sin(lt * 0.7), Math.cos(0.6 + a * 0.8) * 0.55 + 0.1); cam.lookAt(0, 1.70, 0);
-      E.render(X.scene, cam, { ...XLOOK, focus: 0.55, aperture: 0.003 }); blit();
+      cam.position.set(Math.sin(0.6 + a * 0.8) * 0.85, 1.70 + 0.08 * Math.sin(lt * 0.7), Math.cos(0.6 + a * 0.8) * 0.85 + 0.1); cam.lookAt(0, 1.70, 0);
+      E.render(X.scene, cam, { ...XLOOK, focus: 0.85, aperture: 0.003, bloom: 0.3, bloomThreshold: 0.65 }); blit();
       label('REPLAYING YOUR LIFE', 300, 430, 620, 560, eob(seg(lt, 0.25, 0.5)));
     } });
     cue(st, 'whoosh'); cue(st + 0.2, 'slide', { dur: cut(5) - st - 0.2, gain: 0.4 }); }
@@ -260,7 +260,7 @@ export function buildShots(E) {
       NR.update(t, { fire: 0.5 + 0.5 * p });
       const a = eio(lt / d);
       cam.position.set(Math.sin(1.2 + a * 0.6) * 1.35, 0.25, Math.cos(1.2 + a * 0.6) * 1.35 - 0.7); cam.lookAt(0, 0, -0.7);
-      E.render(NR.scene, cam, { ...NLOOK, focus: 1.3, bloom: 0.7 }); blit();
+      E.render(NR.scene, cam, { ...NLOOK, focus: 1.3 }); blit();
       const [lx, ly] = screen(V3(0, 0.35, -0.7), cam);
       label('NEGATIVITY BIAS', 300, 420, lx, ly, eob(seg(lt, 0.25, 0.5)));
     } });
@@ -273,7 +273,7 @@ export function buildShots(E) {
       NR.update(t, { fire: lt < pain ? 0.9 : 0.4, signal: sigK });
       const a = eio(lt / d);
       cam.position.set(Math.sin(0.2 + a * 0.4) * 2.0, 0.15, Math.cos(0.2 + a * 0.4) * 2.0 - 1.3); cam.lookAt(0, -0.15, -1.3);
-      E.render(NR.scene, cam, { ...NLOOK, focus: 2.0, bloom: 0.75 }); blit();
+      E.render(NR.scene, cam, { ...NLOOK, focus: 2.0 }); blit();
       const [px, py] = screen(V3(0.5, -0.6, -1.1), cam);
       if (lt >= pain) { warning(540, 1180, eob(seg(lt, pain, pain + 0.3)) * 0.8); label('SAME AS PAIN', 260, 500, px, py, eob(seg(lt, pain, pain + 0.35))); }
     } });
@@ -284,7 +284,7 @@ export function buildShots(E) {
     add({ id: 'S09', at: st, note: 'bedroom night again, person settles back into the pillow', draw(lt, d, t, blit) {
       X.br.mat.emissiveIntensity = Math.max(0.12, 0.9 * (1 - eio(seg(lt, 0, 0.8))));
       sitPose({ spine: [4 * seg(lt, 0.2, 1.2), 0, 0], head: [8 * seg(lt, 0.2, 1.2), 0, 0], lid: lerp(0.2, 0.55, eio(seg(lt, 0.2, 1.2))), look: [0, 2] });
-      BED.update(0);
+      BED.update(0); BED.lights.moon.key.intensity += 1.1; BED.lights.pLight.intensity = 1.1;
       cam.position.copy(lerpV(V3(0.2, 2.1, 1.6), V3(0.1, 1.95, 1.05), eio(lt / d))); cam.lookAt(0, 1.7, SITZ);
       E.render(BED.scene, cam, { ...BLOOK, focus: 1.2 }); blit();
       label('IT’S NOT A SIGN', 300, 400, 640, 520, eob(seg(lt, 0.3, 0.55)));
