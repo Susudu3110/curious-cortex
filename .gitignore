@@ -1,0 +1,6 @@
+video1/frames/
+video1/scenes/
+video1/*.wav
+video1/check_mid.png
+.venv/
+__pycache__/

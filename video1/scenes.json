@@ -1,0 +1,285 @@
+[
+ {
+  "id": "s01",
+  "narration": "Try to remember being two years old. A birthday. A face. One single moment. Nothing, right? That's not your fault. Your brain deleted those memories on purpose.",
+  "caption": "AGE 2: BLANK",
+  "elements": [
+   {
+    "kind": "frame",
+    "cx": 0.3,
+    "cy": 0.42,
+    "s": 0.2,
+    "t0": 0.05,
+    "color": "pink"
+   },
+   {
+    "kind": "qm",
+    "cx": 0.3,
+    "cy": 0.42,
+    "s": 0.09,
+    "t0": 0.2,
+    "color": "yellow"
+   },
+   {
+    "kind": "sparkle",
+    "cx": 0.48,
+    "cy": 0.2,
+    "s": 0.03,
+    "t0": 0.35,
+    "color": "teal"
+   },
+   {
+    "kind": "caption",
+    "text": "AGE 2: BLANK",
+    "t0": 0.45,
+    "color": "white"
+   }
+  ]
+ },
+ {
+  "id": "s02",
+  "narration": "It even has a name \u2014 infantile amnesia \u2014 and it happens to almost every human on Earth.",
+  "caption": "INFANTILE AMNESIA",
+  "elements": [
+   {
+    "kind": "brain",
+    "cx": 0.3,
+    "cy": 0.38,
+    "s": 0.15,
+    "t0": 0.05,
+    "color": "pink"
+   },
+   {
+    "kind": "label",
+    "text": "INFANTILE AMNESIA",
+    "t0": 0.35,
+    "color": "white"
+   },
+   {
+    "kind": "sparkle",
+    "cx": 0.62,
+    "cy": 0.3,
+    "s": 0.03,
+    "t0": 0.5,
+    "color": "yellow"
+   }
+  ]
+ },
+ {
+  "id": "s03",
+  "narration": "Here's the strange part: babies remember just fine. A newborn can pick out their mother's voice within days of being born.",
+  "caption": "BABIES REMEMBER",
+  "elements": [
+   {
+    "kind": "baby",
+    "cx": 0.32,
+    "cy": 0.46,
+    "s": 0.16,
+    "t0": 0.05,
+    "color": "teal"
+   },
+   {
+    "kind": "waves",
+    "cx": 0.32,
+    "cy": 0.46,
+    "s": 0.3,
+    "t0": 0.3,
+    "color": "yellow"
+   },
+   {
+    "kind": "caption",
+    "text": "BABIES REMEMBER",
+    "t0": 0.45,
+    "color": "white"
+   }
+  ]
+ },
+ {
+  "id": "s04",
+  "narration": "In one famous experiment, babies learned that kicking their foot moves a mobile hanging above them \u2014 and they remembered the trick for days.",
+  "caption": "THE MOBILE TRICK",
+  "elements": [
+   {
+    "kind": "mobile",
+    "cx": 0.55,
+    "cy": 0.0,
+    "s": 0.3,
+    "t0": 0.05,
+    "color": "pink"
+   },
+   {
+    "kind": "baby",
+    "cx": 0.28,
+    "cy": 0.58,
+    "s": 0.17,
+    "t0": 0.25,
+    "color": "teal"
+   },
+   {
+    "kind": "arrow",
+    "x0": 0.42,
+    "y0": 0.72,
+    "x1": 0.28,
+    "y1": 0.58,
+    "t0": 0.45,
+    "color": "yellow"
+   },
+   {
+    "kind": "caption",
+    "text": "THE MOBILE TRICK",
+    "t0": 0.55,
+    "color": "white"
+   }
+  ]
+ },
+ {
+  "id": "s05",
+  "narration": "So the memories are in there. The problem isn't saving them. It's finding them later.",
+  "caption": "SAVED, NOT SEARCHABLE",
+  "elements": [
+   {
+    "kind": "brain",
+    "cx": 0.3,
+    "cy": 0.38,
+    "s": 0.15,
+    "t0": 0.05,
+    "color": "pink"
+   },
+   {
+    "kind": "cabinet",
+    "cx": 0.62,
+    "cy": 0.52,
+    "s": 0.18,
+    "t0": 0.3,
+    "color": "teal"
+   },
+   {
+    "kind": "caption",
+    "text": "SAVED, NOT SEARCHABLE",
+    "t0": 0.5,
+    "color": "white"
+   }
+  ]
+ },
+ {
+  "id": "s06",
+  "narration": "Because your hippocampus \u2014 the brain's memory hard drive \u2014 is still under construction until around age four.",
+  "caption": "HIPPOCAMPUS",
+  "elements": [
+   {
+    "kind": "seahorse",
+    "cx": 0.33,
+    "cy": 0.44,
+    "s": 0.26,
+    "t0": 0.05,
+    "color": "pink"
+   },
+   {
+    "kind": "label",
+    "text": "HIPPOCAMPUS \u2014 MEMORY'S HARD DRIVE",
+    "t0": 0.4,
+    "color": "yellow"
+   }
+  ]
+ },
+ {
+  "id": "s07",
+  "narration": "It's flooding with new neurons, and every wave of new cells literally rewires the circuits where your earliest memories are stored.",
+  "caption": "NEW NEURONS REWIRE",
+  "elements": [
+   {
+    "kind": "neurons",
+    "cx": 0.5,
+    "cy": 0.45,
+    "s": 0.38,
+    "t0": 0.05,
+    "color": "pink"
+   },
+   {
+    "kind": "caption",
+    "text": "NEW NEURONS REWIRE",
+    "t0": 0.55,
+    "color": "teal"
+   }
+  ]
+ },
+ {
+  "id": "s08",
+  "narration": "On top of that, before age three you have no language \u2014 and language is the index that lets you look a memory up. No words, no search bar.",
+  "caption": "NO WORDS = NO SEARCH BAR",
+  "elements": [
+   {
+    "kind": "bubble",
+    "cx": 0.35,
+    "cy": 0.4,
+    "s": 0.26,
+    "t0": 0.05,
+    "color": "teal"
+   },
+   {
+    "kind": "caption",
+    "text": "NO WORDS = NO SEARCH BAR",
+    "t0": 0.4,
+    "color": "white"
+   }
+  ]
+ },
+ {
+  "id": "s09",
+  "narration": "Some of it survives as pure feeling: a warm glow when you're held, a spike of fear at the doctor's office. The story is gone; the emotion stayed.",
+  "caption": "FEELINGS SURVIVE",
+  "elements": [
+   {
+    "kind": "heart",
+    "cx": 0.33,
+    "cy": 0.42,
+    "s": 0.17,
+    "t0": 0.05,
+    "color": "pink"
+   },
+   {
+    "kind": "bolt",
+    "cx": 0.6,
+    "cy": 0.4,
+    "s": 0.13,
+    "t0": 0.3,
+    "color": "yellow"
+   },
+   {
+    "kind": "caption",
+    "text": "FEELINGS SURVIVE",
+    "t0": 0.5,
+    "color": "white"
+   }
+  ]
+ },
+ {
+  "id": "s10",
+  "narration": "So no \u2014 your brain isn't broken. It threw away the scaffolding so it could build the tower. Everything you can remember right now\u2026 you can thank the demolition for that.",
+  "caption": "THE SCAFFOLD HAD TO GO",
+  "elements": [
+   {
+    "kind": "tower",
+    "cx": 0.35,
+    "cy": 0.42,
+    "s": 0.24,
+    "t0": 0.05,
+    "color": "pink"
+   },
+   {
+    "kind": "caption",
+    "text": "THE SCAFFOLD HAD TO GO",
+    "t0": 0.5,
+    "color": "white"
+   },
+   {
+    "kind": "sparkle",
+    "cx": 0.68,
+    "cy": 0.25,
+    "s": 0.04,
+    "t0": 0.7,
+    "color": "yellow"
+   }
+  ]
+ }
+]
