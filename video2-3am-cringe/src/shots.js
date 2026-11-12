@@ -223,15 +223,17 @@ export function buildShots(E) {
     cue(st, 'whoosh'); cue(st + 0.35, 'sparkle', { gain: 0.6 }); }
 
   // 5 · it replays your own life (brain fills frame, memory panels orbit)
+  // 5 · it replays your own life (brain fills frame, memory sparks orbit)
   { const st = cut(4);
-    const panels = new THREE.Group(); panels.visible = false;
-    for (let i = 0; i < 5; i++) {
-      const pm = new THREE.Mesh(new THREE.PlaneGeometry(0.11, 0.07), new THREE.MeshBasicMaterial({ color: '#BFE8FF', transparent: true, opacity: 0.35, side: THREE.DoubleSide }));
-      pm.position.set(Math.cos(i * 1.26) * 0.23, 0.02 * Math.sin(i * 3), Math.sin(i * 1.26) * 0.23); pm.lookAt(0, 0, 0); panels.add(pm);
+    const sparks = new THREE.Group(); sparks.visible = false;
+    for (let i = 0; i < 14; i++) {
+      const sm = new THREE.Mesh(new THREE.SphereGeometry(0.009 + 0.005 * (i % 3), 10, 8), new THREE.MeshBasicMaterial({ color: i % 3 ? '#FFD9A0' : '#BFE8FF' }));
+      sm.position.set(Math.cos(i * 0.9) * (0.2 + 0.05 * (i % 4)), 0.03 * Math.sin(i * 2.2), Math.sin(i * 0.9) * (0.2 + 0.05 * (i % 4)));
+      sparks.add(sm);
     }
-    X.scene.add(panels);
+    X.scene.add(sparks);
     add({ id: 'S05', at: st, note: 'brain close-up, memory panels orbit like film frames', draw(lt, d, t, blit) {
-      panels.rotation.y = lt * 0.9; panels.position.set(0, 1.70, 0); panels.visible = true;
+      sparks.rotation.y = lt * 0.9; sparks.position.set(0, 1.70, 0); sparks.visible = true;
       X.br.mat.emissiveIntensity = 0.42 + 0.08 * Math.sin(lt * 4);
       const a = eio(lt / d);
       cam.position.set(Math.sin(0.6 + a * 0.8) * 0.85, 1.70 + 0.08 * Math.sin(lt * 0.7), Math.cos(0.6 + a * 0.8) * 0.85 + 0.1); cam.lookAt(0, 1.70, 0);
@@ -259,9 +261,9 @@ export function buildShots(E) {
       const p = 0.5 + 0.5 * Math.sin(lt * 7);
       NR.update(t, { fire: 0.5 + 0.5 * p });
       const a = eio(lt / d);
-      cam.position.set(Math.sin(1.2 + a * 0.6) * 1.35, 0.25, Math.cos(1.2 + a * 0.6) * 1.35 - 0.7); cam.lookAt(0, 0, -0.7);
-      E.render(NR.scene, cam, { ...NLOOK, focus: 1.3 }); blit();
-      const [lx, ly] = screen(V3(0, 0.35, -0.7), cam);
+      cam.position.set(Math.sin(1.2 + a * 0.6) * 2.4, 0.45, Math.cos(1.2 + a * 0.6) * 2.4 + 0.4); cam.lookAt(0, 0, -0.4);
+      E.render(NR.scene, cam, { ...NLOOK, focus: 2.4 }); blit();
+      const [lx, ly] = screen(V3(0, 0.35, 0), cam);
       label('NEGATIVITY BIAS', 300, 420, lx, ly, eob(seg(lt, 0.25, 0.5)));
     } });
     cue(st, 'whoosh'); cue(st + 0.15, 'alarm', { dur: cut(7) - st - 0.15, gain: 0.4 }); }
@@ -272,8 +274,8 @@ export function buildShots(E) {
       const sigK = eio(seg(lt, circuits, pain));
       NR.update(t, { fire: lt < pain ? 0.9 : 0.4, signal: sigK });
       const a = eio(lt / d);
-      cam.position.set(Math.sin(0.2 + a * 0.4) * 2.0, 0.15, Math.cos(0.2 + a * 0.4) * 2.0 - 1.3); cam.lookAt(0, -0.15, -1.3);
-      E.render(NR.scene, cam, { ...NLOOK, focus: 2.0 }); blit();
+      cam.position.set(0.5 + Math.sin(0.3 + a * 0.4) * 1.6, -0.25, -1.1 + Math.cos(0.3 + a * 0.4) * 1.6); cam.lookAt(0.5, -0.6, -1.1);
+      E.render(NR.scene, cam, { ...NLOOK, focus: 1.6 }); blit();
       const [px, py] = screen(V3(0.5, -0.6, -1.1), cam);
       if (lt >= pain) { warning(540, 1180, eob(seg(lt, pain, pain + 0.3)) * 0.8); label('SAME AS PAIN', 260, 500, px, py, eob(seg(lt, pain, pain + 0.35))); }
     } });
