@@ -101,6 +101,7 @@ jobs:
         run: |
           set -e
           proj=${{ inputs.project }}
+          mkdir -p "$proj/renders"
           : > list.txt
           for d in shards/shard-*; do n=$(basename "$d" | sed 's/shard-//'); echo "file '$PWD/$d/shard_${n}.mp4'" >> list.txt; done
           sort -t_ -k2 -n list.txt -o list.txt
