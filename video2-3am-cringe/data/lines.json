@@ -1,0 +1,67 @@
+{
+ "duration": 44.068,
+ "voice": "am_michael",
+ "speed": 1.0,
+ "lines": [
+  {
+   "i": 0,
+   "text": "It's 3 AM, you're almost asleep, and suddenly \u2014 that cringey thing you said in 2019.",
+   "start": 0.35,
+   "end": 6.907
+  },
+  {
+   "i": 1,
+   "text": "Why does your brain only torture you at night?",
+   "start": 7.167,
+   "end": 9.692
+  },
+  {
+   "i": 2,
+   "text": "Because all day it's busy \u2014 people, your phone, noise.",
+   "start": 9.952,
+   "end": 12.912
+  },
+  {
+   "i": 3,
+   "text": "But at 3 AM there's nothing left to focus on, so the default mode network wakes up.",
+   "start": 13.172,
+   "end": 18.765
+  },
+  {
+   "i": 4,
+   "text": "It's the part of your brain that replays your own life.",
+   "start": 19.025,
+   "end": 22.055
+  },
+  {
+   "i": 5,
+   "text": "And it doesn't replay the wins \u2014 it hunts your mistakes.",
+   "start": 22.315,
+   "end": 25.414
+  },
+  {
+   "i": 6,
+   "text": "That's negativity bias, your brain trying to stop you repeating them.",
+   "start": 25.674,
+   "end": 29.946
+  },
+  {
+   "i": 7,
+   "text": "It fires the same circuits as physical pain, so it literally hurts.",
+   "start": 30.206,
+   "end": 34.578
+  },
+  {
+   "i": 8,
+   "text": "So when 2019 shows up tonight, remember \u2014 it's not a sign.",
+   "start": 34.838,
+   "end": 39.596
+  },
+  {
+   "i": 9,
+   "text": "It's just a buggy security check you can switch off.",
+   "start": 39.856,
+   "end": 42.808
+  }
+ ]
+}

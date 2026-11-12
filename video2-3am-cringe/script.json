@@ -1,0 +1,27 @@
+{
+  "title": "Why Your Brain Only Cringes at 3 AM",
+  "voice": "am_michael",
+  "speed": 1.0,
+  "lead": 0.35,
+  "outro": 1.0,
+  "gap": 0.26,
+  "music": "tension",
+  "sources": [
+    "Raichle et al. (2001), PNAS — the default mode network is most active during unfocused, restful states and supports self-referential thought and recollection",
+    "Baumeister et al. (2001), Review of General Psychology — 'Bad is stronger than good': negativity bias, bad events are weighted more heavily than good ones",
+    "Eisenberger & Lieberman (2004), Science — social pain (rejection, embarrassment) shares neural circuitry (dorsal anterior cingulate, anterior insula) with physical pain",
+    "Fewer external distractions at night leave more room for mind-wandering and rumination; DMN-driven self-referential replay is stronger then"
+  ],
+  "lines": [
+    { "text": "It's 3 AM, you're almost asleep, and suddenly — that cringey thing you said in 2019.", "caps": "*3 AM | that *cringey thing | from *2019" },
+    { "text": "Why does your brain only torture you at night?", "caps": "*Why only | at *night?" },
+    { "text": "Because all day it's busy — people, your phone, noise.", "caps": "All *day | it's *busy" },
+    { "text": "But at 3 AM there's nothing left to focus on, so the default mode network wakes up.", "caps": "*Nothing left | so the *network | wakes *up" },
+    { "text": "It's the part of your brain that replays your own life.", "caps": "It *replays | your *own life" },
+    { "text": "And it doesn't replay the wins — it hunts your mistakes.", "caps": "Not the *wins | it *hunts | your *mistakes" },
+    { "text": "That's negativity bias, your brain trying to stop you repeating them.", "caps": "That's *negativity | *bias" },
+    { "text": "It fires the same circuits as physical pain, so it literally hurts.", "caps": "Same *circuits | as *pain" },
+    { "text": "So when 2019 shows up tonight, remember — it's not a sign.", "caps": "When *2019 | shows *up | it's *not a sign" },
+    { "text": "It's just a buggy security check you can switch off.", "caps": "Just a *buggy | security *check" }
+  ]
+}

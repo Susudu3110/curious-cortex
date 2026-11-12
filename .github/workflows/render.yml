@@ -1,0 +1,111 @@
+# Sharded software-GL render of the vertical short on GitHub Actions runners.
+#   gh workflow run render -R Susudu3110/curious-cortex -f shards=6 -f fps=24
+# (draft=true for a fast low-res preview render)
+# Output: artifact "final-silent" (silent MP4) — mix.py adds the audio locally.
+name: render
+on:
+  workflow_dispatch:
+    inputs:
+      project:
+        description: 'project folder in this repo'
+        default: 'video2-3am-cringe'
+      fps:
+        default: '24'
+      shards:
+        description: 'parallel runner count (2-8)'
+        default: '6'
+      draft:
+        description: 'true = fast low-quality draft'
+        default: 'false'
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.mk.outputs.matrix }}
+    steps:
+      - id: mk
+        run: |
+          n=$(echo "${{ inputs.shards }}" | grep -oE '^[0-9]+$' || true); [ -n "$n" ] || n=6
+          if [ "$n" -lt 1 ] || [ "$n" -gt 8 ]; then n=6; fi
+          m="["; for i in $(seq 0 $((n-1))); do m="$m\"$i\","; done; m="${m%,}]"
+          echo "matrix=$m" >> "$GITHUB_OUTPUT"
+
+  render:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: ${{ fromJson(needs.plan.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Ensure ffmpeg
+        run: command -v ffmpeg >/dev/null || { sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg; }
+
+      - name: Ensure Chrome
+        run: |
+          if [ -x /usr/bin/google-chrome ]; then
+            echo "CHROME=/usr/bin/google-chrome" >> "$GITHUB_ENV"
+          else
+            curl -sL -o /tmp/chrome.zip https://storage.googleapis.com/chrome-for-testing-public/157.0.8103.78/linux64/chrome-linux64.zip
+            mkdir -p /opt/cft && cd /opt/cft && unzip -q /tmp/chrome.zip
+            echo "CHROME=/opt/cft/chrome-linux64/chrome" >> "$GITHUB_ENV"
+          fi
+
+      - name: Compute shard slice
+        id: slice
+        run: |
+          cd ${{ inputs.project }}
+          fps=${{ inputs.fps }}
+          dur=$(jq -r .duration data/lines.json)
+          read s e <<< "$(python3 -c "import sys; dur,fps,i,n=float(sys.argv[1]),int(sys.argv[2]),int(sys.argv[3]),int(sys.argv[4]); tf=round(dur*fps); a,b=i*tf//n,(i+1)*tf//n; print(a/fps,b/fps)" "$dur" "$fps" "${{ matrix.shard }}" "${{ inputs.shards }}")"
+          echo "start=$s end=$e" >> "$GITHUB_OUTPUT"
+
+      - name: Render shard ${{ matrix.shard }}
+        working-directory: ${{ inputs.project }}
+        env:
+          SOFTWARE_GL: '1'
+          FPS: ${{ inputs.fps }}
+          QS: ${{ inputs.draft == 'true' && '&res=0.5&aa=0&shadow=512' || '' }}
+        run: |
+          args=""
+          [ "${{ inputs.draft }}" = "true" ] && args="--draft"
+          node tools/capture.mjs video "renders/shard_${{ matrix.shard }}.mp4" ${{ steps.slice.outputs.start }} ${{ steps.slice.outputs.end }} $args
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: shard-${{ matrix.shard }}
+          path: ${{ inputs.project }}/renders/*.mp4
+          retention-days: 3
+
+  concat:
+    needs: render
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: shards
+          pattern: shard-*
+      - name: Concat shards
+        run: |
+          set -e
+          proj=${{ inputs.project }}
+          : > list.txt
+          for d in shards/shard-*; do n=$(basename "$d" | sed 's/shard-//'); echo "file '$PWD/$d/shard_${n}.mp4'" >> list.txt; done
+          sort -t_ -k2 -n list.txt -o list.txt
+          cat list.txt
+          ffmpeg -v error -y -f concat -safe 0 -i list.txt -c copy "$proj/renders/final_silent.mp4"
+          ffprobe -v error -show_entries format=duration -of csv=p=0 "$proj/renders/final_silent.mp4"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: final-silent
+          path: ${{ inputs.project }}/renders/final_silent.mp4
+          retention-days: 7

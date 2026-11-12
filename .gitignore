@@ -4,3 +4,6 @@ video1/*.wav
 video1/check_mid.png
 .venv/
 __pycache__/
+video2-3am-cringe/renders/
+video2-3am-cringe/review/
+video2-3am-cringe/data/mix.wav
