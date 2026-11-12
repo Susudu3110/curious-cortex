@@ -1,140 +1,111 @@
 {
- "duration": 37.383,
+ "duration": 44.068,
  "cues": [
   {
-   "t": 0.12,
-   "type": "inhale",
-   "dur": 1
-  },
-  {
-   "t": 3.704,
+   "t": 0,
    "type": "whoosh"
   },
   {
-   "t": 3.754,
+   "t": 0.1,
    "type": "pop",
+   "gain": 0.5
+  },
+  {
+   "t": 5.68,
+   "type": "thud",
    "gain": 0.6
   },
   {
-   "t": 6.228,
+   "t": 7.087,
    "type": "whoosh"
   },
   {
-   "t": 6.478,
+   "t": 9.872,
+   "type": "whoosh"
+  },
+  {
+   "t": 11.4,
    "type": "pop",
-   "gain": 0.5
+   "gain": 0.45
   },
   {
-   "t": 8.19,
+   "t": 11.92,
+   "type": "pop",
+   "gain": 0.45
+  },
+  {
+   "t": 12.4,
+   "type": "pop",
+   "gain": 0.45
+  },
+  {
+   "t": 13.092,
    "type": "whoosh"
   },
   {
-   "t": 8.19,
+   "t": 13.442,
+   "type": "sparkle",
+   "gain": 0.6
+  },
+  {
+   "t": 18.945,
+   "type": "whoosh"
+  },
+  {
+   "t": 19.145,
    "type": "slide",
-   "dur": 2.7539999999999996,
-   "gain": 0.5
+   "dur": 3.0900000000000025,
+   "gain": 0.4
   },
   {
-   "t": 10.944,
+   "t": 22.235,
    "type": "whoosh"
   },
   {
-   "t": 11.044,
-   "type": "bubbles",
-   "dur": 2.8900000000000006
+   "t": 23.4,
+   "type": "plop",
+   "gain": 0.4
   },
   {
-   "t": 13.834,
-   "type": "whoosh"
-  },
-  {
-   "t": 14.034,
+   "t": 24.34,
    "type": "alarm",
-   "dur": 4.478000000000001
-  },
-  {
-   "t": 18.512,
-   "type": "whoosh"
-  },
-  {
-   "t": 18.762,
-   "type": "thud",
-   "gain": 0.45
-  },
-  {
-   "t": 19.382,
-   "type": "thud",
-   "gain": 0.45
-  },
-  {
-   "t": 20.002,
-   "type": "thud",
-   "gain": 0.45
-  },
-  {
-   "t": 20.622,
-   "type": "thud",
-   "gain": 0.45
-  },
-  {
-   "t": 21.242,
-   "type": "thud",
-   "gain": 0.45
-  },
-  {
-   "t": 21.862,
-   "type": "thud",
-   "gain": 0.45
-  },
-  {
-   "t": 22.272,
-   "type": "whoosh"
-  },
-  {
-   "t": 22.422,
-   "type": "heartbeat"
-  },
-  {
-   "t": 22.922,
-   "type": "heartbeat"
-  },
-  {
-   "t": 23.512,
-   "type": "heartbeat"
-  },
-  {
-   "t": 24.208,
-   "type": "heartbeat"
-  },
-  {
-   "t": 25.03,
-   "type": "heartbeat"
-  },
-  {
-   "t": 28.233,
-   "type": "slide",
-   "dur": 1.2,
+   "dur": 1.2540000000000013,
    "gain": 0.5
   },
   {
-   "t": 31.491,
-   "type": "inhale",
-   "dur": 1
-  },
-  {
-   "t": 33.091,
-   "type": "inhale",
-   "dur": 1,
-   "gain": 0.7
-  },
-  {
-   "t": 33.156,
+   "t": 25.594,
    "type": "whoosh"
   },
   {
-   "t": 33.406,
+   "t": 25.744,
+   "type": "alarm",
+   "dur": 4.382,
+   "gain": 0.4
+  },
+  {
+   "t": 31.28,
+   "type": "zip",
+   "dur": 1.0399999999999991,
+   "gain": 0.55
+  },
+  {
+   "t": 32.32,
    "type": "slam",
-   "gain": 0.7
+   "gain": 0.65
+  },
+  {
+   "t": 34.758,
+   "type": "whoosh"
+  },
+  {
+   "t": 39.776,
+   "type": "pop",
+   "gain": 0.4
+  },
+  {
+   "t": 43.468,
+   "type": "sparkle",
+   "gain": 0.5
   }
  ]
 }
